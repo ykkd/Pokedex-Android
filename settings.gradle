@@ -1,3 +1,4 @@
 include ':app',
-        ':data:api'
+        ':data:api',
+        ':data:local'
 rootProject.name = "PokeDex"

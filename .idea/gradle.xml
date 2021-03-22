@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data/api" />
+            <option value="$PROJECT_DIR$/data/local" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
