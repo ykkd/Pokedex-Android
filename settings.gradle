@@ -4,5 +4,6 @@ include ':app',
         ':repository',
         ':domain',
         ':model',
+        ':presentation:common',
         ':presentation:home',
 rootProject.name = "PokeDex"

@@ -16,8 +16,10 @@
             <option value="$PROJECT_DIR$/data/api" />
             <option value="$PROJECT_DIR$/data/local" />
             <option value="$PROJECT_DIR$/domain" />
-            <option value="$PROJECT_DIR$/home" />
             <option value="$PROJECT_DIR$/model" />
+            <option value="$PROJECT_DIR$/presentation" />
+            <option value="$PROJECT_DIR$/presentation/common" />
+            <option value="$PROJECT_DIR$/presentation/home" />
             <option value="$PROJECT_DIR$/repository" />
           </set>
         </option>
