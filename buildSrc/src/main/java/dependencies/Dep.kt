@@ -1,3 +1,5 @@
+package dependencies
+
 object Dep {
 
     object Plugin {
