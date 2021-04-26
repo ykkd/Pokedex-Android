@@ -41,6 +41,8 @@ android {
 dependencies {
     implementation project(':data:api')
     implementation project(':data:local')
+    implementation project(':repository')
+    implementation project(':domain')
 
     // Kotlin
     implementation Dep.Kotlin.stdLib
