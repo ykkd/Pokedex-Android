@@ -3,6 +3,7 @@ import dependencies.Dep
 apply from: "${rootDir.absolutePath}/presentation/presentation_common_build.gradle"
 
 dependencies {
+    implementation project(':shared')
     implementation project(':model')
     implementation project(':domain')
     implementation project(':presentation:common')
