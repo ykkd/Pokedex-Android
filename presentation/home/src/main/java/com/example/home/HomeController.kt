@@ -15,6 +15,10 @@ class HomeController : TypedEpoxyController<PokemonListView>() {
         data ?: return
         data.pokemons.forEach {
             // アイテムを表示する
+            pokemonList {
+                id("pokemon_list_${it.number}")
+                pokemon(it)
+            }
         }
     }
 }
