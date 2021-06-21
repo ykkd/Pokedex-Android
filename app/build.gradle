@@ -44,6 +44,7 @@ dependencies {
     implementation project(':data:local')
     implementation project(':repository')
     implementation project(':domain')
+    implementation project(':presentation:common')
 
     // Kotlin
     implementation Dep.Kotlin.stdLib
