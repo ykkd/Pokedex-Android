@@ -7,4 +7,5 @@ include ':app',
         ':model',
         ':presentation:common',
         ':presentation:home',
+        ':presentation:pokemon_detail'
 rootProject.name = "PokeDex"
