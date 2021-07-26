@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.home.databinding.FragmentHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -42,6 +44,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setupRecyclerView() {
+        val dividerItemDecoration =  DividerItemDecoration(context, LinearLayoutManager(context).orientation)
+        binding.recyclerView.addItemDecoration(dividerItemDecoration)
         binding.recyclerView.setController(controller)
     }
 }
