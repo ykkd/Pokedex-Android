@@ -1,5 +1,6 @@
 package com.example.api.api
 
+import com.example.response.PokemonDetailResponse
 import com.example.response.PokemonListResponse
 import retrofit2.Response
 import retrofit2.http.GET

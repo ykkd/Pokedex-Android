@@ -7,7 +7,7 @@ data class PokemonDetailResponse(
     val name: String?,
     val stats: List<StatResponse>,
     val types: List<TypeResponse>,
-    val weight: Int
+    val weight: Float
 ) {
     val hp = stats.find { it.stat.name == "hp" }
 
@@ -19,5 +19,5 @@ data class PokemonDetailResponse(
 
     val specialDefense = stats.find { it.stat.name == "special-defense" }
 
-    val  speed = stats.find { it.stat.name == "speed" }
+    val speed = stats.find { it.stat.name == "speed" }
 }

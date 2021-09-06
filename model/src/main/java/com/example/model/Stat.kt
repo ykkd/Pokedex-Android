@@ -6,7 +6,7 @@ import com.example.response.StatXResponse
 data class Stat(
     val baseStat: Int,
     val effort: Int,
-    val stat: StatXResponse
+    val stat: StatX
 ) {
 
     companion object {

@@ -3,6 +3,7 @@ package com.example.api.client
 import com.example.api.api.PokeApi
 import com.example.model.PokeDexApiException
 import com.example.model.PokeDexApiResponseException
+import com.example.response.PokemonDetailResponse
 import com.example.response.PokemonListResponse
 import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
@@ -16,6 +17,7 @@ interface PokeApiClient {
     }
 
     suspend fun fetchPokemonList(limit: Int = TOTAL_POKEMONS_COUNT): Result<PokemonListResponse?, PokeDexApiException>
+    suspend fun fetchPokemonDetail(id: Int): Result<PokemonDetailResponse?, PokeDexApiException>
 }
 
 internal class PokeApiClientImpl(
@@ -24,6 +26,10 @@ internal class PokeApiClientImpl(
 
     override suspend fun fetchPokemonList(limit: Int): Result<PokemonListResponse?, PokeDexApiException> {
         return execute { pokeApi.pokemon(limit) }
+    }
+
+    override suspend fun fetchPokemonDetail(id: Int): Result<PokemonDetailResponse?, PokeDexApiException> {
+        return execute { pokeApi.pokemonDetail(id) }
     }
 
     private suspend fun <T> execute(block: suspend () -> Response<T>): Result<T?, PokeDexApiException> {
@@ -42,4 +48,4 @@ internal class PokeApiClientImpl(
             }
         )
     }
-}
+ }

@@ -15,10 +15,10 @@ interface PokemonListViewService {
 }
 
 internal class PokemonListViewServiceImpl(
-    private val pokemonListRepository: PokemonListViewRepository
+    private val pokemonListViewRepository: PokemonListViewRepository
 ) : PokemonListViewService {
 
     override suspend fun fetchData(): Result<PokemonListView, PokeDexException> {
-        return pokemonListRepository.fetchData()
+        return pokemonListViewRepository.fetchData()
     }
 }
