@@ -8,5 +8,12 @@
         android:id="@+id/navigation_home"
         android:name="com.example.home.HomeFragment">
     </fragment>
+    <fragment
+        android:id="@+id/fragment_pokemon_detail"
+        android:name="com.example.pokedex.pokemon_detail.PokemonDetailFragment">
 
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 </navigation>
