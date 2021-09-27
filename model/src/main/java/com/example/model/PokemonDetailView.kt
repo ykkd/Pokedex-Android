@@ -45,4 +45,14 @@ data class PokemonDetailView(
             )
         }
     }
+
+    val imageUrl get() = generateImageUrl(id.toString())
+
+    private fun generateImageUrl(number: String) =
+        "https://github.com/fanzeyi/pokemon.json/blob/master/images/${
+            number.padStart(
+                3,
+                '0'
+            )
+        }.png?raw=true"
 }

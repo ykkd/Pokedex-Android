@@ -14,6 +14,7 @@ class PokemonDetailFragment : Fragment(R.layout.fragment_pokemon_detail) {
     private val binding get() = _binding!!
     private val args: PokemonDetailFragmentArgs by navArgs()
     private val _viewModel: PokemonDetailViewModel by viewModel { parametersOf(args.id) }
+    private val controller = PokemonDetailController()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -22,13 +23,20 @@ class PokemonDetailFragment : Fragment(R.layout.fragment_pokemon_detail) {
         }
 
         lifecycle.addObserver(_viewModel)
+
+        setController()
+
         observe(_viewModel)
+    }
+
+    private fun setController() {
+        binding.recyclerView.setController(controller)
     }
 
     private fun observe(viewModel: PokemonDetailViewModel) {
         viewModel.run {
-            this.pokemonDetailView.observe(viewLifecycleOwner) {
-                // setDataする
+            this.pokemonDetailView.observe(viewLifecycleOwner) { pokemonDetailView ->
+                controller.setData(pokemonDetailView)
             }
         }
     }

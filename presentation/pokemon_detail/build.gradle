@@ -9,4 +9,5 @@ dependencies {
     implementation project(':presentation:common')
     // Kotlin Result
     implementation Dep.Other.KotlinResult.kotlinResult
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 }
