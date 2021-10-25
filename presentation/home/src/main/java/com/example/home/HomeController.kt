@@ -9,7 +9,9 @@ import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
 import kotlinx.coroutines.launch
 
-class HomeController : TypedEpoxyController<PokemonListView>() {
+class HomeController(
+    private val onClickItem: (PokemonListView.Pokemon) -> Unit
+) : TypedEpoxyController<PokemonListView>() {
 
     override fun buildModels(data: PokemonListView) {
         data ?: return
@@ -18,6 +20,9 @@ class HomeController : TypedEpoxyController<PokemonListView>() {
             pokemonList {
                 id("pokemon_list_${it.number}")
                 pokemon(it)
+                onClickItem { model, _, _, _ ->
+                    onClickItem.invoke(model.pokemon())
+                }
             }
         }
     }

@@ -7,6 +7,10 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.home.HomeFragment">
+
+        <action
+            android:id="@+id/to_pokemon_detail"
+            app:destination="@+id/fragment_pokemon_detail" />
     </fragment>
     <fragment
         android:id="@+id/fragment_pokemon_detail"

@@ -7,11 +7,17 @@
         <variable
             name="pokemon"
             type="com.example.response.PokemonListView.Pokemon" />
+
+        <variable
+            name="onClickItem"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{onClickItem}"
+        >
 
         <ImageView
             android:id="@+id/image"

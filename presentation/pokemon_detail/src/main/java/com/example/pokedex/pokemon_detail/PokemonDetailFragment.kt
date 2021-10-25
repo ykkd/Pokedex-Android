@@ -3,6 +3,7 @@ package com.example.pokedex.pokemon_detail
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.pokedex.pokemon_detail.databinding.FragmentPokemonDetailBinding
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -19,7 +20,11 @@ class PokemonDetailFragment : Fragment(R.layout.fragment_pokemon_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentPokemonDetailBinding.bind(view).apply {
+            this.viewModel = _viewModel
             this.lifecycleOwner = viewLifecycleOwner
+            this.toolbar.setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
         }
 
         lifecycle.addObserver(_viewModel)

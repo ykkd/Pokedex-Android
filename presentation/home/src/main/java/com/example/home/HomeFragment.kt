@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.home.databinding.FragmentHomeBinding
@@ -14,12 +15,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val _viewModel: HomeViewModel by viewModel()
-    private val controller = HomeController()
+    private val controller = HomeController(
+        onClickItem = { pokemon ->
+            findNavController().navigate(
+                HomeFragmentDirections.toPokemonDetail(pokemon.number)
+            )
+        }
+    )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeBinding.bind(view).apply {
-            viewModel = _viewModel
+            this.viewModel = _viewModel
             this.lifecycleOwner = viewLifecycleOwner
         }
         lifecycle.addObserver(_viewModel)

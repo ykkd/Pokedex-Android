@@ -35,6 +35,7 @@ class PokemonDetailViewModel(
             },
             failure = {
                 // エラーのハンドリング
+                // show alert(retry, cancel)
                 _uiState.value = UiState.Retry
             }
         )
