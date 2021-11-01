@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.example.model.UiState" />
+
+        <variable
+            name="uiState"
+            type="com.example.model.UiState" />
+
+        <variable
+            name="onClickRetryBtn"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#c4c4c4"
+        app:visibleGone="@{uiState instanceof UiState.Retry}">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Retry"
+            android:layout_gravity="center"
+            android:onClick="@{onClickRetryBtn}" />
+
+    </FrameLayout>
+</layout>

@@ -27,7 +27,7 @@ class PokemonDetailViewModel(
     }
 
     fun fetchData() = viewModelScope.launch {
-        _uiState.value = UiState.Loading
+        _uiState.value = UiState.Loading // TODO: ここの記述を改善し都度更新を減らす
         pokemonDetailViewService.fetchData(id).mapBoth(
             success = {
                 _uiState.value = UiState.Loaded
