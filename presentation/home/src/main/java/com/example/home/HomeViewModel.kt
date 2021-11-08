@@ -6,6 +6,7 @@ import com.example.model.UiState
 import com.example.response.PokemonListView
 import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
+import com.github.michaelbull.result.mapBoth
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -15,28 +16,30 @@ class HomeViewModel(
     private val _pokemonListView: MutableLiveData<PokemonListView> = MutableLiveData()
     val pokemonListView: LiveData<PokemonListView> get() = _pokemonListView
 
-    private val _uiState: MutableLiveData<UiState> = MutableLiveData()
+    private val _uiState: MutableLiveData<UiState> = MutableLiveData(UiState.Idle)
     val uiState: LiveData<UiState> get() = _uiState
+
+    private val _isLoading: MutableLiveData<Boolean> = MutableLiveData()
+    val isLoading: LiveData<Boolean> get() = _isLoading
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
         fetchData()
     }
 
-    fun fetchData() {
-        _uiState.value = UiState.Loading
-        viewModelScope.launch {
-            when (val result = pokemonListViewService.fetchData()) {
-                is Ok -> {
-                    _uiState.value = UiState.Loaded
-                    _pokemonListView.postValue(result.value)
-                }
-
-                is Err -> {
-                    // エラーのハンドリング
-                    _uiState.value = UiState.Retry
-                }
+    fun fetchData() = viewModelScope.launch {
+        _isLoading.value = true
+        pokemonListViewService.fetchData().mapBoth(
+            success = {
+                _isLoading.value = false
+                _uiState.value = UiState.Loaded
+                _pokemonListView.postValue(it)
+            },
+            failure = {
+                // エラーのハンドリング
+                _isLoading.value = false
+                _uiState.value = UiState.Retry
             }
-        }
+        )
     }
 }

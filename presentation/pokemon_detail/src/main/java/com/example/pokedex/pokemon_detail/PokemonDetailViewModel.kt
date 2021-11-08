@@ -18,8 +18,11 @@ class PokemonDetailViewModel(
     private val _pokemonDetailView: MutableLiveData<PokemonDetailView> = MutableLiveData()
     val pokemonDetailView: LiveData<PokemonDetailView> get() = _pokemonDetailView
 
-    private val _uiState: MutableLiveData<UiState> = MutableLiveData()
+    private val _uiState: MutableLiveData<UiState> = MutableLiveData(UiState.Idle)
     val uiState: LiveData<UiState> get() = _uiState
+
+    private val _isLoading: MutableLiveData<Boolean> = MutableLiveData()
+    val isLoading: LiveData<Boolean> get() = _isLoading
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
@@ -27,15 +30,16 @@ class PokemonDetailViewModel(
     }
 
     fun fetchData() = viewModelScope.launch {
-        _uiState.value = UiState.Loading // TODO: ここの記述を改善し都度更新を減らす
+        _isLoading.value = true
         pokemonDetailViewService.fetchData(id).mapBoth(
             success = {
+                _isLoading.value = false
                 _uiState.value = UiState.Loaded
                 _pokemonDetailView.postValue(it)
             },
             failure = {
                 // エラーのハンドリング
-                // show alert(retry, cancel)
+                _isLoading.value = false
                 _uiState.value = UiState.Retry
             }
         )
